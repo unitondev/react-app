@@ -1,4 +1,4 @@
-import { MyButton } from "./styles";
+import { MarginButton } from "./styles";
 import PropTypes from "prop-types";
 
 function CounterView({
@@ -9,37 +9,37 @@ function CounterView({
 }) {
     return (
         <div>
-            <MyButton
+            <MarginButton
                 variant="contained"
                 className="button incrementButton"
                 onClick={handleIncrementClick}
             >
                 increment
-            </MyButton>
-            <MyButton
+            </MarginButton>
+            <MarginButton
                 variant="contained"
                 className="button decrementButton"
                 onClick={handleDecrementClick}
             >
                 decrement
-            </MyButton>
-            <MyButton
+            </MarginButton>
+            <MarginButton
                 variant="contained"
                 className="button resetButton"
                 onClick={handleResetClick}
             >
                 reset
-            </MyButton>
+            </MarginButton>
             <span className="CounterValue">{counterValue}</span>
         </div>
     );
 }
 
 CounterView.propTypes = {
-    handleIncrementClick: PropTypes.func,
-    handleDecrementClick: PropTypes.func,
-    handleResetClick: PropTypes.func,
-    counterValue: PropTypes.number,
+    handleIncrementClick: PropTypes.func.isRequired,
+    handleDecrementClick: PropTypes.func.isRequired,
+    handleResetClick: PropTypes.func.isRequired,
+    counterValue: PropTypes.number.isRequired,
 };
 
 export default CounterView;
