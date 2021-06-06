@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import CounterView from "../views/Counter/index";
+import PropTypes from "prop-types";
 
 class CounterContainer extends React.Component {
-    constructor(props) {
-        super(props);
+    constructor({ number }) {
+        super({ number });
         this.state = {
-            counterValue: 0,
+            counterValue: number,
         };
         this.handleIncrementClick = this.handleIncrementClick.bind(this);
         this.handleDecrementClick = this.handleDecrementClick.bind(this);
@@ -41,5 +42,9 @@ class CounterContainer extends React.Component {
         );
     }
 }
+
+CounterContainer.propTypes = {
+    number: PropTypes.number.isRequired,
+};
 
 export default CounterContainer;
