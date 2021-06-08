@@ -1,11 +1,13 @@
 import React, { Component } from "react";
-import CounterWrapperView from "../views/CounterWrapper/index";
+import CounterWrapperView from "../views/CounterWrapper/CounterWrapperView";
 
 class CounterWrapperContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            counterArray: [0],
+            counterCount: 1,
+            isEven: false,
+            isOdd: false,
         };
         this.handleAddCounterClick = this.handleAddCounterClick.bind(this);
         this.handleRemoveCounterClick =
@@ -14,28 +16,34 @@ class CounterWrapperContainer extends React.Component {
             this.handleRestartCountersClick.bind(this);
     }
 
-    componentDidMount() {}
-
     handleAddCounterClick(event) {
         this.setState((state) => ({
-            counterArray: state.counterArray.concat(0),
+            counterCount: ++state.counterCount,
+            isEven: true,
         }));
     }
 
     handleRemoveCounterClick(event) {
-        if (this.state.counterArray.length > 1) {
+        if (this.state.counterCount > 1) {
             this.setState((state) => ({
-                counterArray: state.counterArray.slice(
-                    0,
-                    state.counterArray.length - 1
-                ),
+                counterCount: --state.counterCount,
+                isOdd: true,
             }));
         }
     }
 
-    handleRestartCountersClick(evet) {
+    componentDidUpdate(prevProps, prevState) {
+        if (prevState.isEven || prevState.isOdd) {
+            this.setState(() => ({
+                isEven: false,
+                isOdd: false,
+            }));
+        }
+    }
+
+    handleRestartCountersClick(event) {
         this.setState((state) => ({
-            counterArray: (state.counterArray = [0]),
+            counterCount: 1,
         }));
     }
 
@@ -45,7 +53,9 @@ class CounterWrapperContainer extends React.Component {
                 handleAddCounterClick={this.handleAddCounterClick}
                 handleRemoveCounterClick={this.handleRemoveCounterClick}
                 handleRestartCountersClick={this.handleRestartCountersClick}
-                counterArray={this.state.counterArray}
+                counterCount={this.state.counterCount}
+                isEven={this.state.isEven}
+                isOdd={this.state.isOdd}
             />
         );
     }

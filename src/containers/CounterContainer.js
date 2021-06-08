@@ -1,16 +1,29 @@
 import React, { Component } from "react";
-import CounterView from "../views/Counter/index";
+import CounterView from "../views/Counter/CounterView";
 import PropTypes from "prop-types";
 
 class CounterContainer extends React.Component {
-    constructor({ number }) {
-        super({ number });
+    constructor(props) {
+        super(props);
         this.state = {
-            counterValue: number,
+            counterValue: 0,
         };
         this.handleIncrementClick = this.handleIncrementClick.bind(this);
         this.handleDecrementClick = this.handleDecrementClick.bind(this);
         this.handleResetClick = this.handleResetClick.bind(this);
+    }
+
+    UNSAFE_componentWillReceiveProps(nextProps) {
+        if (nextProps.isEven) {
+            return this.setState((state) => ({
+                counterValue: ++state.counterValue,
+            }));
+        }
+        if (nextProps.isOdd) {
+            return this.setState((state) => ({
+                counterValue: --state.counterValue,
+            }));
+        }
     }
 
     handleIncrementClick(event) {
@@ -26,7 +39,7 @@ class CounterContainer extends React.Component {
     }
 
     handleResetClick(event) {
-        this.setState(() => ({
+        this.setState((state) => ({
             counterValue: 0,
         }));
     }
@@ -44,7 +57,8 @@ class CounterContainer extends React.Component {
 }
 
 CounterContainer.propTypes = {
-    number: PropTypes.number.isRequired,
+    isEven: PropTypes.bool,
+    isOdd: PropTypes.bool,
 };
 
 export default CounterContainer;

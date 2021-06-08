@@ -1,14 +1,14 @@
 import logo from "./logo.svg";
 import "./App.css";
-import Counter from "./containers/CounterContainer";
-import CounterWrapper from "./containers/CounterWrapperContainer";
+import CounterWrapperContainer from "./containers/CounterWrapperContainer";
 
 function App() {
+    console.log("App return starts from ReactDOM.render");
     return (
         <div className="App">
             <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo" />
-                <CounterWrapper />
+                <CounterWrapperContainer />
             </header>
         </div>
     );
