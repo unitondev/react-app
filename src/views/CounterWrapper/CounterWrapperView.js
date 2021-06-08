@@ -1,6 +1,7 @@
 import { MarginButton } from "../Counter/styles";
 import CounterContainer from "../../containers/CounterContainer";
 import PropTypes from "prop-types";
+import "../../views/CounterWrapper/style.css";
 
 function CounterWrapperView({
     handleAddCounterClick,
@@ -73,9 +74,7 @@ function CounterWrapperView({
                 >
                     Restart Counters
                 </MarginButton>
-                <ul style={{ listStyle: "none", paddingInlineStart: 0 }}>
-                    {counterListItems}
-                </ul>
+                <ul>{counterListItems}</ul>
             </div>
         </>
     );
