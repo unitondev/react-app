@@ -32,8 +32,8 @@ class CounterWrapperContainer extends React.Component {
         }
     }
 
-    componentDidUpdate(prevProps, prevState) {
-        if (prevState.isEven || prevState.isOdd) {
+    componentDidUpdate() {
+        if (this.state.isEven || this.state.isOdd) {
             this.setState(() => ({
                 isEven: false,
                 isOdd: false,
