@@ -32,7 +32,14 @@ class CounterWrapperContainer extends React.Component {
         }
     }
 
+    handleRestartCountersClick(event) {
+        this.setState((state) => ({
+            counterCount: 1,
+        }));
+    }
+
     componentDidUpdate() {
+        console.log("componentDidUpdate in CounterWrapperContainer");
         if (this.state.isEven || this.state.isOdd) {
             this.setState(() => ({
                 isEven: false,
@@ -41,13 +48,8 @@ class CounterWrapperContainer extends React.Component {
         }
     }
 
-    handleRestartCountersClick(event) {
-        this.setState((state) => ({
-            counterCount: 1,
-        }));
-    }
-
     render() {
+        console.log("render in CounterWrapperContainer");
         return (
             <CounterWrapperView
                 handleAddCounterClick={this.handleAddCounterClick}

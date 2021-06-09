@@ -14,6 +14,7 @@ class CounterContainer extends React.Component {
     }
 
     UNSAFE_componentWillReceiveProps(nextProps) {
+        console.log("UNSAFE_componentWillReceiveProps in CounterContainer");
         if (nextProps.isEven) {
             return this.setState((state) => ({
                 counterValue: ++state.counterValue,
@@ -45,6 +46,7 @@ class CounterContainer extends React.Component {
     }
 
     render() {
+        console.log("render in CounterContainer");
         return (
             <CounterView
                 handleIncrementClick={this.handleIncrementClick}
