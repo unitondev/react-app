@@ -5,7 +5,7 @@ class CounterWrapperContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            counterCount: 1,
+            countersCount: 1,
             isEven: false,
             isOdd: false,
         };
@@ -18,15 +18,15 @@ class CounterWrapperContainer extends React.Component {
 
     handleAddCounterClick(event) {
         this.setState((state) => ({
-            counterCount: ++state.counterCount,
+            countersCount: ++state.countersCount,
             isEven: true,
         }));
     }
 
     handleRemoveCounterClick(event) {
-        if (this.state.counterCount > 1) {
+        if (this.state.countersCount > 1) {
             this.setState((state) => ({
-                counterCount: --state.counterCount,
+                countersCount: --state.countersCount,
                 isOdd: true,
             }));
         }
@@ -34,7 +34,7 @@ class CounterWrapperContainer extends React.Component {
 
     handleRestartCountersClick(event) {
         this.setState((state) => ({
-            counterCount: 1,
+            countersCount: 1,
         }));
     }
 
@@ -55,7 +55,7 @@ class CounterWrapperContainer extends React.Component {
                 handleAddCounterClick={this.handleAddCounterClick}
                 handleRemoveCounterClick={this.handleRemoveCounterClick}
                 handleRestartCountersClick={this.handleRestartCountersClick}
-                counterCount={this.state.counterCount}
+                countersCount={this.state.countersCount}
                 isEven={this.state.isEven}
                 isOdd={this.state.isOdd}
             />
