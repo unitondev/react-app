@@ -8,6 +8,7 @@ class CounterContainer extends React.Component {
         this.state = {
             counterValue: 0,
         };
+        this.props = props;
         this.handleIncrementClick = this.handleIncrementClick.bind(this);
         this.handleDecrementClick = this.handleDecrementClick.bind(this);
         this.handleResetClick = this.handleResetClick.bind(this);
@@ -15,34 +16,62 @@ class CounterContainer extends React.Component {
 
     UNSAFE_componentWillReceiveProps(nextProps) {
         console.log("UNSAFE_componentWillReceiveProps in CounterContainer");
-        if (nextProps.isEven) {
-            return this.setState((state) => ({
-                counterValue: ++state.counterValue,
-            }));
+        if (nextProps.countersCount > this.props.countersCount) {
+            this.handleEvenValue();
         }
-        if (nextProps.isOdd) {
-            return this.setState((state) => ({
-                counterValue: --state.counterValue,
-            }));
+        if (nextProps.countersCount < this.props.countersCount) {
+            this.handleOddValue();
         }
     }
 
-    handleIncrementClick(event) {
+    incrementValue() {
         this.setState((state) => ({
             counterValue: ++state.counterValue,
         }));
     }
 
-    handleDecrementClick(event) {
+    decrementValue() {
         this.setState((state) => ({
             counterValue: --state.counterValue,
         }));
+    }
+
+    handleIncrementClick(event) {
+        this.incrementValue();
+    }
+
+    handleDecrementClick(event) {
+        this.decrementValue();
     }
 
     handleResetClick(event) {
         this.setState((state) => ({
             counterValue: 0,
         }));
+    }
+
+    handleEvenValue() {
+        if (this.state.counterValue % 2 === 0) {
+            this.incrementValue();
+        }
+    }
+
+    handleOddValue() {
+        if (this.state.counterValue % 2 === 1) {
+            this.decrementValue();
+        }
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        console.log("shouldComponentUpdate in CounterContainer");
+        if (nextState.counterValue === this.state.counterValue) {
+            console.log(
+                "shouldComponentUpdate in CounterContainer returns false"
+            );
+            return false;
+        }
+        console.log("shouldComponentUpdate in CounterContainer returns true");
+        return true;
     }
 
     render() {
@@ -61,6 +90,7 @@ class CounterContainer extends React.Component {
 CounterContainer.propTypes = {
     isEven: PropTypes.bool,
     isOdd: PropTypes.bool,
+    countersCount: PropTypes.number.isRequired,
 };
 
 export default CounterContainer;

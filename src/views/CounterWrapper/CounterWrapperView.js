@@ -8,46 +8,14 @@ function CounterWrapperView({
     handleRemoveCounterClick,
     handleRestartCountersClick,
     countersCount,
-    isEven,
-    isOdd,
 }) {
     const counterListItems = [];
-
-    if (isEven || isOdd) {
-        for (let index = 0; index < countersCount; index++) {
-            if (isEven) {
-                if (index % 2 === 0) {
-                    counterListItems.push(
-                        <li key={index.toString()}>
-                            <CounterContainer isEven={true} />
-                        </li>
-                    );
-                    continue;
-                }
-            } else {
-                if (index % 2 === 1) {
-                    counterListItems.push(
-                        <li key={index.toString()}>
-                            <CounterContainer isOdd={true} />
-                        </li>
-                    );
-                    continue;
-                }
-            }
-            counterListItems.push(
-                <li key={index.toString()}>
-                    <CounterContainer />
-                </li>
-            );
-        }
-    } else {
-        for (let index = 0; index < countersCount; index++) {
-            counterListItems.push(
-                <li key={index.toString()}>
-                    <CounterContainer />
-                </li>
-            );
-        }
+    for (let index = 0; index < countersCount; index++) {
+        counterListItems.push(
+            <li key={index.toString()}>
+                <CounterContainer countersCount={countersCount} />
+            </li>
+        );
     }
 
     return (
@@ -85,8 +53,6 @@ CounterWrapperView.propTypes = {
     handleRemoveCounterClick: PropTypes.func.isRequired,
     handleRestartCountersClick: PropTypes.func.isRequired,
     countersCount: PropTypes.number.isRequired,
-    isEven: PropTypes.bool.isRequired,
-    isOdd: PropTypes.bool.isRequired,
 };
 
 export default CounterWrapperView;
