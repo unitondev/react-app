@@ -26,13 +26,13 @@ class CounterContainer extends React.Component {
 
     incrementValue() {
         this.setState((state) => ({
-            counterValue: ++state.counterValue,
+            counterValue: state.counterValue + 1,
         }));
     }
 
     decrementValue() {
         this.setState((state) => ({
-            counterValue: --state.counterValue,
+            counterValue: state.counterValue - 1,
         }));
     }
 
