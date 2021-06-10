@@ -15,6 +15,7 @@ class CounterContainer extends React.Component {
     }
 
     UNSAFE_componentWillReceiveProps(nextProps) {
+        debugger;
         console.log("UNSAFE_componentWillReceiveProps in CounterContainer");
         if (nextProps.countersCount > this.props.countersCount) {
             this.handleEvenValue();
@@ -25,12 +26,14 @@ class CounterContainer extends React.Component {
     }
 
     incrementValue() {
+        console.log("setState in incrementValue");
         this.setState((state) => ({
             counterValue: ++state.counterValue,
         }));
     }
 
     decrementValue() {
+        console.log("setState in decrementValue");
         this.setState((state) => ({
             counterValue: --state.counterValue,
         }));
@@ -51,18 +54,21 @@ class CounterContainer extends React.Component {
     }
 
     handleEvenValue() {
+        console.log("handle even");
         if (this.state.counterValue % 2 === 0) {
             this.incrementValue();
         }
     }
 
     handleOddValue() {
+        console.log("handle odd");
         if (this.state.counterValue % 2 === 1) {
             this.decrementValue();
         }
     }
 
     shouldComponentUpdate(nextProps, nextState) {
+        debugger;
         console.log("shouldComponentUpdate in CounterContainer");
         if (nextState.counterValue === this.state.counterValue) {
             console.log(
@@ -75,6 +81,7 @@ class CounterContainer extends React.Component {
     }
 
     render() {
+        debugger;
         console.log("render in CounterContainer");
         return (
             <CounterView
