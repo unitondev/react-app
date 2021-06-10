@@ -1,24 +1,14 @@
 import logo from "./logo.svg";
 import "./App.css";
-import Counter from "./containers/CounterContainer";
+import CounterWrapperContainer from "./containers/CounterWrapperContainer";
 
 function App() {
+    console.log("App return starts from ReactDOM.render");
     return (
         <div className="App">
             <header className="App-header">
                 <img src={logo} className="App-logo" alt="logo" />
-                <p>
-                    Edit <code>src/App.js</code> and save to reload.
-                </p>
-                <a
-                    className="App-link"
-                    href="https://reactjs.org"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                >
-                    Learn React
-                </a>
-                <Counter />
+                <CounterWrapperContainer />
             </header>
         </div>
     );
