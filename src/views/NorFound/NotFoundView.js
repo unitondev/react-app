@@ -1,11 +1,17 @@
+import styles from "./styles";
+import { withStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
+
 function NotFoundView(props) {
+    const { classes } = props;
     return (
-        <div className="not-found-block">
-            <div className="not-found-text-block">
-                <p className="not-found-text">404 - Page Not Found</p>
-            </div>
+        <div className={classes.notFoundBlock}>
+            <p className={classes.notFoundText}>404 - Page Not Found</p>
         </div>
     );
 }
 
-export default NotFoundView;
+NotFoundView.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+export default withStyles(styles)(NotFoundView);

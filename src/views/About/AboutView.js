@@ -1,14 +1,19 @@
 import logo from "./../../logo.svg";
 import NavBarView from "./../../views/Navbar/NavBarView";
+import styles from "./styles";
+import { withStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
 
 function AboutView(props) {
+    const { classes } = props;
     return (
         <>
             <NavBarView />
-            <div className="about-block container">
-                <div className="about-text-block">
-                    <div className="about-description-block">
-                        <p className="about-description-text">
+            {/* how can i add container from AppStyle.js */}
+            <div className={classes.aboutBlock}>
+                <div className={classes.aboutTextBlock}>
+                    <div className={classes.aboutDescriptionBlock}>
+                        <p className={classes.aboutDescriptionText}>
                             Google LLC is an American multinational technology
                             company that specializes in Internet-related
                             services and products, which include online
@@ -20,7 +25,7 @@ function AboutView(props) {
                     </div>
                 </div>
 
-                <div className="App-header">
+                <div className={classes.AppHeader}>
                     <img src={logo} className="App-logo" alt="logo" />
                 </div>
             </div>
@@ -28,4 +33,7 @@ function AboutView(props) {
     );
 }
 
-export default AboutView;
+AboutView.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+export default withStyles(styles)(AboutView);

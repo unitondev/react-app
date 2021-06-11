@@ -1,24 +1,29 @@
 import { NavLink } from "react-router-dom";
+import styles from "./styles";
+import { withStyles } from "@material-ui/core/styles";
+import PropTypes from "prop-types";
 
 function NavBarView(props) {
+    const { classes } = props;
     return (
         <nav>
-            <ul className="navbar-links container">
-                <li className="navbar-link-block">
+            {/* how can i add container from AppStyle.js */}
+            <ul className={classes.navbarLinks}>
+                <li className={classes.navbarLinkBlock}>
                     <NavLink
                         to="/about"
-                        className="navbar-link"
-                        activeClassName="activeLink"
+                        className={classes.navbarLink}
+                        activeClassName={classes.activeLink}
                     >
                         About Us
                     </NavLink>
                 </li>
 
-                <li className="navbar-link-block">
+                <li className={classes.navbarLinkBlock}>
                     <NavLink
                         to="/counters"
-                        className="navbar-link"
-                        activeClassName="activeLink"
+                        className={classes.navbarLink}
+                        activeClassName={classes.activeLink}
                     >
                         Counters
                     </NavLink>
@@ -28,4 +33,7 @@ function NavBarView(props) {
     );
 }
 
-export default NavBarView;
+NavBarView.propTypes = {
+    classes: PropTypes.object.isRequired,
+};
+export default withStyles(styles)(NavBarView);

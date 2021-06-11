@@ -1,7 +1,8 @@
 import { MarginButton } from "../Counter/styles";
+import { withStyles } from "@material-ui/core/styles";
 import CounterContainer from "../../containers/CounterContainer";
 import PropTypes from "prop-types";
-import "../../views/CounterWrapper/style.css";
+import styles from "./styles.js";
 import NavBarView from "./../../views/Navbar/NavBarView";
 
 function CounterWrapperView({
@@ -9,6 +10,7 @@ function CounterWrapperView({
     handleRemoveCounterClick,
     handleRestartCountersClick,
     countersCount,
+    classes,
 }) {
     const counterListItems = [];
     for (let index = 0; index < countersCount; index++) {
@@ -22,39 +24,46 @@ function CounterWrapperView({
     return (
         <>
             <NavBarView />
-            <div>
-                <MarginButton
-                    variant="contained"
-                    color="primary"
-                    onClick={handleAddCounterClick}
-                >
-                    Add Counter
-                </MarginButton>
-                <MarginButton
-                    variant="contained"
-                    color="primary"
-                    onClick={handleRemoveCounterClick}
-                >
-                    Remove Counter
-                </MarginButton>
-                <MarginButton
-                    variant="contained"
-                    color="primary"
-                    onClick={handleRestartCountersClick}
-                >
-                    Restart Counters
-                </MarginButton>
-                <ul>{counterListItems}</ul>
+            <div className={classes.counterWrapper}>
+                <div className={classes.counterWrapperControls}>
+                    <MarginButton
+                        variant="contained"
+                        color="primary"
+                        onClick={handleAddCounterClick}
+                    >
+                        Add Counter
+                    </MarginButton>
+                    <MarginButton
+                        variant="contained"
+                        color="primary"
+                        onClick={handleRemoveCounterClick}
+                    >
+                        Remove Counter
+                    </MarginButton>
+                    <MarginButton
+                        variant="contained"
+                        color="primary"
+                        onClick={handleRestartCountersClick}
+                    >
+                        Restart Counters
+                    </MarginButton>
+                </div>
+                <div className={classes.controlsList}>
+                    <ul className={classes.counterListItems}>
+                        {counterListItems}
+                    </ul>
+                </div>
             </div>
         </>
     );
 }
 
 CounterWrapperView.propTypes = {
+    classes: PropTypes.object.isRequired,
     handleAddCounterClick: PropTypes.func.isRequired,
     handleRemoveCounterClick: PropTypes.func.isRequired,
     handleRestartCountersClick: PropTypes.func.isRequired,
     countersCount: PropTypes.number.isRequired,
 };
 
-export default CounterWrapperView;
+export default withStyles(styles)(CounterWrapperView);
