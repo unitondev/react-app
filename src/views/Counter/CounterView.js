@@ -1,4 +1,6 @@
 import { MarginButton } from "./styles";
+import styles from "./styles";
+import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 
 function CounterView({
@@ -6,6 +8,7 @@ function CounterView({
     handleDecrementClick,
     handleResetClick,
     counterValue,
+    classes,
 }) {
     return (
         <div>
@@ -30,7 +33,7 @@ function CounterView({
             >
                 reset
             </MarginButton>
-            <span className="CounterValue">{counterValue}</span>
+            <span className={classes.counterValue}>{counterValue}</span>
         </div>
     );
 }
@@ -40,6 +43,7 @@ CounterView.propTypes = {
     handleDecrementClick: PropTypes.func.isRequired,
     handleResetClick: PropTypes.func.isRequired,
     counterValue: PropTypes.number.isRequired,
+    classes: PropTypes.object.isRequired,
 };
 
-export default CounterView;
+export default withStyles(styles)(CounterView);
