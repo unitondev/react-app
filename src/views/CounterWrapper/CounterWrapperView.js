@@ -2,6 +2,7 @@ import { MarginButton } from "../Counter/styles";
 import CounterContainer from "../../containers/CounterContainer";
 import PropTypes from "prop-types";
 import "../../views/CounterWrapper/style.css";
+import NavBarView from "./../../views/Navbar/NavBarView";
 
 function CounterWrapperView({
     handleAddCounterClick,
@@ -20,6 +21,7 @@ function CounterWrapperView({
 
     return (
         <>
+            <NavBarView />
             <div>
                 <MarginButton
                     variant="contained"

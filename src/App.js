@@ -1,16 +1,34 @@
-import logo from "./logo.svg";
 import "./App.css";
 import CounterWrapperContainer from "./containers/CounterWrapperContainer";
+import AboutContainer from "./containers/AboutContainer";
+import NotFoundView from "./views/NorFound/NotFoundView";
+import NavBarView from "./views/Navbar/NavBarView";
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Redirect,
+} from "react-router-dom";
 
 function App() {
-    console.log("App return starts from ReactDOM.render");
     return (
-        <div className="App">
-            <header className="App-header">
-                <img src={logo} className="App-logo" alt="logo" />
-                <CounterWrapperContainer />
-            </header>
-        </div>
+        <Router>
+            <Switch>
+                <Route exact path="/">
+                    <NavBarView />
+                </Route>
+                <Route path="/about">
+                    <AboutContainer />
+                </Route>
+                <Route path="/counters">
+                    <CounterWrapperContainer />
+                </Route>
+                <Route path="/404">
+                    <NotFoundView />
+                </Route>
+                <Redirect from="/" to="/404"></Redirect>
+            </Switch>
+        </Router>
     );
 }
 
