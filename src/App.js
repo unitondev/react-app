@@ -3,6 +3,7 @@ import CounterWrapperContainer from "./containers/CounterWrapperContainer";
 import AboutContainer from "./containers/AboutContainer";
 import NotFoundView from "./views/NorFound/NotFoundView";
 import NavBarView from "./views/Navbar/NavBarView";
+import LoginContainer from "./containers/LoginContainer";
 import {
     BrowserRouter as Router,
     Switch,
@@ -22,6 +23,9 @@ function App() {
                 </Route>
                 <Route path="/counters">
                     <CounterWrapperContainer />
+                </Route>
+                <Route path="/login">
+                    <LoginContainer />
                 </Route>
                 <Route path="/404">
                     <NotFoundView />
