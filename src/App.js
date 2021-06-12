@@ -1,7 +1,7 @@
 import "./App.css";
 import CounterWrapperContainer from "./containers/CounterWrapperContainer";
 import AboutContainer from "./containers/AboutContainer";
-import NotFoundView from "./views/NorFound/NotFoundView";
+import NotFoundView from "./views/NotFound/NotFoundView";
 import NavBarView from "./views/Navbar/NavBarView";
 import {
     BrowserRouter as Router,
