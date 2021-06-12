@@ -28,6 +28,16 @@ function NavBarView(props) {
                         Counters
                     </NavLink>
                 </li>
+
+                <li className={classes.navbarLinkBlock}>
+                    <NavLink
+                        to="/login"
+                        className={classes.navbarLink}
+                        activeClassName={classes.activeLink}
+                    >
+                        Login
+                    </NavLink>
+                </li>
             </ul>
         </nav>
     );
