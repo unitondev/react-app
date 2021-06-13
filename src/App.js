@@ -15,7 +15,7 @@ function App() {
     return (
         <Router>
             <Switch>
-                <Route exact path="/">
+                <Route path="/react-application">
                     <NavBarView />
                 </Route>
                 <Route path="/about">
