@@ -1,5 +1,5 @@
-import logo from "./../../logo.svg";
-import NavBarView from "./../../views/Navbar/NavBarView";
+import logo from "../../logo.svg";
+import NavBarView from "../../views/Navbar/NavBarView";
 import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";

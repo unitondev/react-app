@@ -8,10 +8,6 @@ class CounterContainer extends React.Component {
         this.state = {
             counterValue: 0,
         };
-        this.props = props;
-        this.handleIncrementClick = this.handleIncrementClick.bind(this);
-        this.handleDecrementClick = this.handleDecrementClick.bind(this);
-        this.handleResetClick = this.handleResetClick.bind(this);
     }
 
     UNSAFE_componentWillReceiveProps(nextProps) {
@@ -36,19 +32,19 @@ class CounterContainer extends React.Component {
         }));
     }
 
-    handleIncrementClick(event) {
+    handleIncrementClick = (event) => {
         this.incrementValue();
-    }
+    };
 
-    handleDecrementClick(event) {
+    handleDecrementClick = (event) => {
         this.decrementValue();
-    }
+    };
 
-    handleResetClick(event) {
+    handleResetClick = (event) => {
         this.setState((state) => ({
             counterValue: 0,
         }));
-    }
+    };
 
     handleEvenValue() {
         if (this.state.counterValue % 2 === 0) {

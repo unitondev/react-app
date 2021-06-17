@@ -7,32 +7,27 @@ class CounterWrapperContainer extends React.Component {
         this.state = {
             countersCount: 1,
         };
-        this.handleAddCounterClick = this.handleAddCounterClick.bind(this);
-        this.handleRemoveCounterClick =
-            this.handleRemoveCounterClick.bind(this);
-        this.handleRestartCountersClick =
-            this.handleRestartCountersClick.bind(this);
     }
 
-    handleAddCounterClick(event) {
+    handleAddCounterClick = (event) => {
         this.setState((state) => ({
             countersCount: ++state.countersCount,
         }));
-    }
+    };
 
-    handleRemoveCounterClick(event) {
+    handleRemoveCounterClick = (event) => {
         if (this.state.countersCount > 1) {
             this.setState((state) => ({
                 countersCount: --state.countersCount,
             }));
         }
-    }
+    };
 
-    handleRestartCountersClick(event) {
+    handleRestartCountersClick = (event) => {
         this.setState((state) => ({
             countersCount: 1,
         }));
-    }
+    };
 
     render() {
         console.log("render in CounterWrapperContainer");

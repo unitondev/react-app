@@ -1,6 +1,6 @@
 import "./App.css";
 import CounterWrapperContainer from "./containers/CounterWrapperContainer";
-import AboutContainer from "./containers/AboutContainer";
+import AboutView from "./views/About/AboutView";
 import NotFoundView from "./views/NotFound/NotFoundView";
 import NavBarView from "./views/Navbar/NavBarView";
 import LoginContainer from "./containers/LoginContainer";
@@ -22,7 +22,7 @@ function App() {
                     <NavBarView />
                 </Route>
                 <Route path="/about">
-                    <AboutContainer />
+                    <AboutView />
                 </Route>
                 <Route path="/counters">
                     <CounterWrapperContainer />

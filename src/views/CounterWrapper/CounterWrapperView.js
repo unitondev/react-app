@@ -3,7 +3,7 @@ import { withStyles } from "@material-ui/core/styles";
 import CounterContainer from "../../containers/CounterContainer";
 import PropTypes from "prop-types";
 import styles from "./styles.js";
-import NavBarView from "./../../views/Navbar/NavBarView";
+import NavBarView from "../../views/Navbar/NavBarView";
 
 function CounterWrapperView({
     handleAddCounterClick,
