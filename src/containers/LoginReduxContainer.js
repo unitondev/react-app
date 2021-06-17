@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import LoginReduxView from "../views/LoginRedux/LoginReduxView";
-import { changeEmail, changePassword } from "./../redux/actions";
+import { changeEmail, changePassword } from "../redux/actions";
 import PropTypes from "prop-types";
+import validateEmail from "../helper/validateEmail";
 
 class LoginReduxContainer extends React.Component {
     constructor(props) {
@@ -10,12 +11,9 @@ class LoginReduxContainer extends React.Component {
         this.state = {
             errors: { email: "", password: "" },
         };
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleEmailChange = this.handleEmailChange.bind(this);
-        this.handlePasswordChange = this.handlePasswordChange.bind(this);
     }
 
-    handleSubmit(event) {
+    handleSubmit = (event) => {
         if (!this.handleValidation()) {
             event.preventDefault();
             if (this.state.errors["email"]) {
@@ -25,15 +23,15 @@ class LoginReduxContainer extends React.Component {
                 alert(`${this.state.errors["password"]}`);
             }
         }
-    }
+    };
 
-    handleEmailChange(event) {
+    handleEmailChange = (event) => {
         this.props.changeEmail(event.target.value);
-    }
+    };
 
-    handlePasswordChange(event) {
+    handlePasswordChange = (event) => {
         this.props.changePassword(event.target.value);
-    }
+    };
 
     handleValidation() {
         let email = this.props.email;
@@ -46,7 +44,7 @@ class LoginReduxContainer extends React.Component {
         if (!email) {
             isFormValid = false;
             errors["email"] = "Email Required";
-        } else if (!this.validateEmail(email)) {
+        } else if (!validateEmail(email)) {
             isFormValid = false;
             errors["email"] = "Invalid email";
         } else {
@@ -67,12 +65,6 @@ class LoginReduxContainer extends React.Component {
             errors,
         });
         return isFormValid;
-    }
-
-    validateEmail(email) {
-        const re =
-            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(String(email).toLowerCase());
     }
 
     render() {

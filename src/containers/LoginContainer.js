@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import LoginView from "../views/Login/LoginView";
+import validateEmail from "../helper/validateEmail";
 
 class LoginContainer extends React.Component {
     constructor(props) {
@@ -9,11 +10,9 @@ class LoginContainer extends React.Component {
             password: "",
             errors: { email: "", password: "" },
         };
-        this.handleChange = this.handleChange.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
-    handleSubmit(event) {
+    handleSubmit = (event) => {
         if (this.handleValidation()) {
             console.log(
                 `email: ${this.state.email}, password ${this.state.password}`
@@ -32,19 +31,13 @@ class LoginContainer extends React.Component {
         }
 
         event.preventDefault();
-    }
+    };
 
-    handleChange(event) {
+    handleChange = (event) => {
         this.setState({
             [event.target.name]: event.target.value,
         });
-    }
-
-    validateEmail(email) {
-        const re =
-            /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        return re.test(String(email).toLowerCase());
-    }
+    };
 
     handleValidation() {
         let email = this.state.email;
@@ -55,7 +48,7 @@ class LoginContainer extends React.Component {
         if (!email) {
             isFormValid = false;
             errors["email"] = "Email Required";
-        } else if (!this.validateEmail(email)) {
+        } else if (!validateEmail(email)) {
             isFormValid = false;
             errors["email"] = "Invalid email";
         } else {

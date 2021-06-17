@@ -1,21 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import LoginReduxSuccessView from "./../views/LoginReduxSuccess/LoginReduxSuccessView";
+import LoginReduxSuccessView from "../views/LoginReduxSuccess/LoginReduxSuccessView";
 
-class LoginReduxSuccessContainer extends React.Component {
-    constructor(props) {
-        super(props);
-    }
-
-    render() {
-        return (
-            <LoginReduxSuccessView
-                email={this.props.email}
-                password={this.props.password}
-            />
-        );
-    }
+function LoginReduxSuccessContainer(props) {
+    return (
+        <LoginReduxSuccessView email={props.email} password={props.password} />
+    );
 }
 
 LoginReduxSuccessContainer.propTypes = {
