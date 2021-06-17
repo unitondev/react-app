@@ -38,6 +38,16 @@ function NavBarView(props) {
                         Login
                     </NavLink>
                 </li>
+
+                <li className={classes.navbarLinkBlock}>
+                    <NavLink
+                        to="/login-redux"
+                        className={classes.navbarLink}
+                        activeClassName={classes.activeLink}
+                    >
+                        Login with Redux
+                    </NavLink>
+                </li>
             </ul>
         </nav>
     );

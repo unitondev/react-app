@@ -47,7 +47,6 @@ class LoginContainer extends React.Component {
     }
 
     handleValidation() {
-        debugger;
         let email = this.state.email;
         let password = this.state.password;
         let errors = this.state.errors;

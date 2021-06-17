@@ -2,21 +2,29 @@ import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
 import NavBarView from "./../../views/Navbar/NavBarView";
 import PropTypes from "prop-types";
-import Button from "@material-ui/core/Button";
+import Link from "@material-ui/core/Link";
 import TextField from "@material-ui/core/TextField";
+import { Link as RouterLink } from "react-router-dom";
 
-function LoginView({ handleSubmit, handleChange, email, password, classes }) {
+function LoginReduxView({
+    handleSubmit,
+    handleEmailChange,
+    handlePasswordChange,
+    email,
+    password,
+    classes,
+}) {
     return (
         <>
             <NavBarView />
             <div className={classes.loginBlock}>
-                <form onSubmit={handleSubmit} className={classes.loginBlock}>
+                <form className={classes.loginBlock}>
                     <TextField
                         className={classes.textField}
                         type="text"
                         name="email"
                         value={email}
-                        onChange={handleChange}
+                        onChange={handleEmailChange}
                         label="Enter Email"
                         variant="outlined"
                     ></TextField>
@@ -26,14 +34,17 @@ function LoginView({ handleSubmit, handleChange, email, password, classes }) {
                         type="password"
                         name="password"
                         value={password}
-                        onChange={handleChange}
+                        onChange={handlePasswordChange}
                         label="Enter Password"
                         variant="outlined"
                     ></TextField>
-
-                    <Button variant="contained" color="secondary" type="submit">
+                    <Link
+                        component={RouterLink}
+                        to="/login-redux/success"
+                        onClick={handleSubmit}
+                    >
                         Log In
-                    </Button>
+                    </Link>
                 </form>
                 <div>
                     <p>email: {JSON.stringify(email)}</p>
@@ -44,12 +55,13 @@ function LoginView({ handleSubmit, handleChange, email, password, classes }) {
     );
 }
 
-LoginView.propTypes = {
+LoginReduxView.propTypes = {
     classes: PropTypes.object.isRequired,
     handleSubmit: PropTypes.func.isRequired,
-    handleChange: PropTypes.func.isRequired,
+    handleEmailChange: PropTypes.func.isRequired,
+    handlePasswordChange: PropTypes.func.isRequired,
     email: PropTypes.string.isRequired,
     password: PropTypes.string.isRequired,
 };
 
-export default withStyles(styles)(LoginView);
+export default withStyles(styles)(LoginReduxView);
