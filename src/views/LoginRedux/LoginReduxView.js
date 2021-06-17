@@ -2,8 +2,9 @@ import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
 import NavBarView from "./../../views/Navbar/NavBarView";
 import PropTypes from "prop-types";
-import Button from "@material-ui/core/Button";
+import Link from "@material-ui/core/Link";
 import TextField from "@material-ui/core/TextField";
+import { Link as RouterLink } from "react-router-dom";
 
 function LoginReduxView({
     handleSubmit,
@@ -17,7 +18,7 @@ function LoginReduxView({
         <>
             <NavBarView />
             <div className={classes.loginBlock}>
-                <form onSubmit={handleSubmit} className={classes.loginBlock}>
+                <form className={classes.loginBlock}>
                     <TextField
                         className={classes.textField}
                         type="text"
@@ -37,9 +38,13 @@ function LoginReduxView({
                         label="Enter Password"
                         variant="outlined"
                     ></TextField>
-                    <Button variant="contained" color="secondary" type="submit">
+                    <Link
+                        component={RouterLink}
+                        to="/login-redux/success"
+                        onClick={handleSubmit}
+                    >
                         Log In
-                    </Button>
+                    </Link>
                 </form>
                 <div>
                     <p>email: {JSON.stringify(email)}</p>

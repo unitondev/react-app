@@ -5,6 +5,8 @@ import NotFoundView from "./views/NotFound/NotFoundView";
 import NavBarView from "./views/Navbar/NavBarView";
 import LoginContainer from "./containers/LoginContainer";
 import LoginReduxContainer from "./containers/LoginReduxContainer";
+import LoginReduxSuccessContainer from "./containers/LoginReduxSuccessContainer";
+
 import {
     BrowserRouter as Router,
     Switch,
@@ -30,6 +32,9 @@ function App() {
                 </Route>
                 <Route path="/login-redux" exact>
                     <LoginReduxContainer />
+                </Route>
+                <Route path="/login-redux/success" exact>
+                    <LoginReduxSuccessContainer />
                 </Route>
                 <Route path="/404">
                     <NotFoundView />

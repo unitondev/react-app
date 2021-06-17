@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 
-function LoginReduxSuccessView({ email, password }) {
+export default function LoginReduxSuccessView({ email, password }) {
     return (
         <div>
             <p>
@@ -14,5 +14,3 @@ LoginReduxSuccessView.propTypes = {
     email: PropTypes.string.isRequired,
     password: PropTypes.string.isRequired,
 };
-
-export default LoginReduxSuccessView;

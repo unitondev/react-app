@@ -16,14 +16,8 @@ class LoginReduxContainer extends React.Component {
     }
 
     handleSubmit(event) {
-        event.preventDefault();
-        if (this.handleValidation()) {
-            console.log(
-                `email: ${this.props.email}, password ${this.props.password}`
-            );
-            this.props.changeEmail("");
-            this.props.changePassword("");
-        } else {
+        if (!this.handleValidation()) {
+            event.preventDefault();
             if (this.state.errors["email"]) {
                 alert(`${this.state.errors["email"]}`);
             }
