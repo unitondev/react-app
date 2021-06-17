@@ -4,6 +4,7 @@ import LoginReduxView from "../views/LoginRedux/LoginReduxView";
 import { changeEmail, changePassword } from "../redux/actions";
 import PropTypes from "prop-types";
 import validateEmail from "../helper/validateEmail";
+import { getEmail, getPassword } from "../redux/selectors";
 
 class LoginReduxContainer extends React.Component {
     constructor(props) {
@@ -81,8 +82,8 @@ class LoginReduxContainer extends React.Component {
 }
 
 const mapStateToProps = (state) => ({
-    email: state.login.email,
-    password: state.login.password,
+    email: getEmail(state),
+    password: getPassword(state),
 });
 
 const mapDispatchToProps = {

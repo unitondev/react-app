@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import LoginReduxSuccessView from "../views/LoginReduxSuccess/LoginReduxSuccessView";
+import { getEmail, getPassword } from "../redux/selectors";
 
 function LoginReduxSuccessContainer(props) {
     return (
@@ -15,8 +16,8 @@ LoginReduxSuccessContainer.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-    email: state.login.email,
-    password: state.login.password,
+    email: getEmail(state),
+    password: getPassword(state),
 });
 
 export default connect(mapStateToProps)(LoginReduxSuccessContainer);
