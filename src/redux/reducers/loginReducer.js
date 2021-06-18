@@ -1,5 +1,5 @@
 import { handleActions } from "redux-actions";
-import { changeEmail, changePassword } from "../actions/loginActions";
+import { changeEmail, changePassword } from "../actions";
 
 const initialLoginState = {
     email: "",

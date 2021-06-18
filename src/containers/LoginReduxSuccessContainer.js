@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import Index from "../views/LoginReduxSuccess";
-import { getEmail, getPassword } from "../redux/selectors/loginSelectors";
+import { getEmail, getPassword } from "../redux/selectors";
 
 function LoginReduxSuccessContainer(props) {
     return (

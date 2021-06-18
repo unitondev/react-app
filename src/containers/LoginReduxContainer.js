@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import LoginReduxView from "../views/LoginRedux";
-import { changeEmail, changePassword } from "../redux/actions/loginActions";
+import { changeEmail, changePassword } from "../redux/actions";
 import PropTypes from "prop-types";
 import validateEmail from "../helper/validateEmail";
-import { getEmail, getPassword } from "../redux/selectors/loginSelectors";
+import { getEmail, getPassword } from "../redux/selectors";
 
 class LoginReduxContainer extends React.Component {
     constructor(props) {
