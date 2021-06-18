@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import CounterView from "../views/Counter/CounterView";
+import CounterView from "../views/Counter";
 import PropTypes from "prop-types";
 
 class CounterContainer extends React.Component {

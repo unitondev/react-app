@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import LoginView from "../views/Login/LoginView";
+import LoginView from "../views/Login";
 import validateEmail from "../helper/validateEmail";
 
 class LoginContainer extends React.Component {

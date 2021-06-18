@@ -1,15 +1,4 @@
-import { HANDLE_CHANGE_EMAIL, HANDLE_CHANGE_PASSWORD } from "./types";
+import { createAction } from 'redux-actions'
 
-export function changeEmail(email) {
-    return {
-        type: HANDLE_CHANGE_EMAIL,
-        payload: email,
-    };
-}
-
-export function changePassword(password) {
-    return {
-        type: HANDLE_CHANGE_PASSWORD,
-        payload: password,
-    };
-}
+export const changeEmail = createAction('HANDLE_CHANGE_EMAIL');
+export const changePassword = createAction('HANDLE_CHANGE_PASSWORD');

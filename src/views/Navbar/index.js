@@ -3,7 +3,7 @@ import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 
-function NavBarView(props) {
+function Index(props) {
     const { classes } = props;
     return (
         <nav>
@@ -53,7 +53,7 @@ function NavBarView(props) {
     );
 }
 
-NavBarView.propTypes = {
+Index.propTypes = {
     classes: PropTypes.object.isRequired,
 };
-export default withStyles(styles)(NavBarView);
+export default withStyles(styles)(Index);

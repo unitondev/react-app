@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import CounterWrapperView from "../views/CounterWrapper/CounterWrapperView";
+import CounterWrapperView from "../views/CounterWrapper";
 
 class CounterWrapperContainer extends React.Component {
     constructor(props) {
