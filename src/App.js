@@ -1,8 +1,8 @@
 import "./App.css";
 import CounterWrapperContainer from "./containers/CounterWrapperContainer";
-import AboutView from "./views/About/AboutView";
-import NotFoundView from "./views/NotFound/NotFoundView";
-import NavBarView from "./views/Navbar/NavBarView";
+import AboutView from "./views/About";
+import NotFoundView from "./views/NotFound";
+import NavBarView from "./views/Navbar";
 import LoginContainer from "./containers/LoginContainer";
 import LoginReduxContainer from "./containers/LoginReduxContainer";
 import LoginReduxSuccessContainer from "./containers/LoginReduxSuccessContainer";

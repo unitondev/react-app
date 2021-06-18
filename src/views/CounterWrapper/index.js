@@ -3,9 +3,9 @@ import { withStyles } from "@material-ui/core/styles";
 import CounterContainer from "../../containers/CounterContainer";
 import PropTypes from "prop-types";
 import styles from "./styles.js";
-import NavBarView from "../../views/Navbar/NavBarView";
+import NavBarView from "../Navbar";
 
-function CounterWrapperView({
+function Index({
     handleAddCounterClick,
     handleRemoveCounterClick,
     handleRestartCountersClick,
@@ -58,7 +58,7 @@ function CounterWrapperView({
     );
 }
 
-CounterWrapperView.propTypes = {
+Index.propTypes = {
     classes: PropTypes.object.isRequired,
     handleAddCounterClick: PropTypes.func.isRequired,
     handleRemoveCounterClick: PropTypes.func.isRequired,
@@ -66,4 +66,4 @@ CounterWrapperView.propTypes = {
     countersCount: PropTypes.number.isRequired,
 };
 
-export default withStyles(styles)(CounterWrapperView);
+export default withStyles(styles)(Index);

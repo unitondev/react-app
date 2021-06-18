@@ -2,7 +2,7 @@ import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 
-function NotFoundView(props) {
+function Index(props) {
     const { classes } = props;
     return (
         <div className={classes.notFoundBlock}>
@@ -11,7 +11,7 @@ function NotFoundView(props) {
     );
 }
 
-NotFoundView.propTypes = {
+Index.propTypes = {
     classes: PropTypes.object.isRequired,
 };
-export default withStyles(styles)(NotFoundView);
+export default withStyles(styles)(Index);

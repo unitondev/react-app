@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import LoginReduxSuccessView from "../views/LoginReduxSuccess/LoginReduxSuccessView";
+import Index from "../views/LoginReduxSuccess";
 import { getEmail, getPassword } from "../redux/selectors";
 
 function LoginReduxSuccessContainer(props) {
     return (
-        <LoginReduxSuccessView email={props.email} password={props.password} />
+        <Index email={props.email} password={props.password} />
     );
 }
 

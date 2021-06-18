@@ -3,7 +3,7 @@ import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 
-function CounterView({
+function Index({
     handleIncrementClick,
     handleDecrementClick,
     handleResetClick,
@@ -38,7 +38,7 @@ function CounterView({
     );
 }
 
-CounterView.propTypes = {
+Index.propTypes = {
     handleIncrementClick: PropTypes.func.isRequired,
     handleDecrementClick: PropTypes.func.isRequired,
     handleResetClick: PropTypes.func.isRequired,
@@ -46,4 +46,4 @@ CounterView.propTypes = {
     classes: PropTypes.object.isRequired,
 };
 
-export default withStyles(styles)(CounterView);
+export default withStyles(styles)(Index);

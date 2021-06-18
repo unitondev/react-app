@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import LoginReduxView from "../views/LoginRedux/LoginReduxView";
+import LoginReduxView from "../views/LoginRedux";
 import { changeEmail, changePassword } from "../redux/actions";
 import PropTypes from "prop-types";
 import validateEmail from "../helper/validateEmail";

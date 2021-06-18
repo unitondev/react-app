@@ -1,10 +1,10 @@
 import logo from "../../logo.svg";
-import NavBarView from "../../views/Navbar/NavBarView";
+import NavBarView from "../Navbar";
 import styles from "./styles";
 import { withStyles } from "@material-ui/core/styles";
 import PropTypes from "prop-types";
 
-function AboutView(props) {
+function Index(props) {
     const { classes } = props;
     return (
         <>
@@ -33,7 +33,7 @@ function AboutView(props) {
     );
 }
 
-AboutView.propTypes = {
+Index.propTypes = {
     classes: PropTypes.object.isRequired,
 };
-export default withStyles(styles)(AboutView);
+export default withStyles(styles)(Index);
