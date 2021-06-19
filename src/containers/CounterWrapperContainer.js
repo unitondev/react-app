@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import CounterWrapperView from "../views/CounterWrapper";
 
 export default function CounterWrapperContainer() {

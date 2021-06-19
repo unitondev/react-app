@@ -1,4 +1,4 @@
-import React, { Component, useEffect, useMemo, useRef, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import CounterView from "../views/Counter";
 import PropTypes from "prop-types";
 
@@ -19,7 +19,6 @@ function CounterContainer(props) {
     }, [countersCount]);
 
     const incrementValue = () => {
-        console.log("fuck");
         setCounterValue(counterValue + 1);
     };
 
