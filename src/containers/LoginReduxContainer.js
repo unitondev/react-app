@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import LoginReduxView from "../views/LoginRedux";
 import { changeEmail, changePassword } from "../redux/actions";

@@ -1,4 +1,4 @@
-import React, { Component, useState } from "react";
+import React, { useState } from "react";
 import LoginView from "../views/Login";
 import validateEmail from "../helper/validateEmail";
 
