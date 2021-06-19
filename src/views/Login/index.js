@@ -5,7 +5,14 @@ import PropTypes from "prop-types";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 
-function Index({ handleSubmit, handleChange, email, password, classes }) {
+function Index({
+    handleSubmit,
+    handleEmailChange,
+    handlePasswordChange,
+    email,
+    password,
+    classes,
+}) {
     return (
         <>
             <NavBarView />
@@ -16,7 +23,7 @@ function Index({ handleSubmit, handleChange, email, password, classes }) {
                         type="text"
                         name="email"
                         value={email}
-                        onChange={handleChange}
+                        onChange={handleEmailChange}
                         label="Enter Email"
                         variant="outlined"
                     ></TextField>
@@ -26,7 +33,7 @@ function Index({ handleSubmit, handleChange, email, password, classes }) {
                         type="password"
                         name="password"
                         value={password}
-                        onChange={handleChange}
+                        onChange={handlePasswordChange}
                         label="Enter Password"
                         variant="outlined"
                     ></TextField>
@@ -47,7 +54,8 @@ function Index({ handleSubmit, handleChange, email, password, classes }) {
 Index.propTypes = {
     classes: PropTypes.object.isRequired,
     handleSubmit: PropTypes.func.isRequired,
-    handleChange: PropTypes.func.isRequired,
+    handleEmailChange: PropTypes.func.isRequired,
+    handlePasswordChange: PropTypes.func.isRequired,
     email: PropTypes.string.isRequired,
     password: PropTypes.string.isRequired,
 };

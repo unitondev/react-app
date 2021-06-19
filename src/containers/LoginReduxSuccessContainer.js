@@ -5,9 +5,8 @@ import Index from "../views/LoginReduxSuccess";
 import { getEmail, getPassword } from "../redux/selectors";
 
 function LoginReduxSuccessContainer(props) {
-    return (
-        <Index email={props.email} password={props.password} />
-    );
+    const { email, password } = props;
+    return <Index email={email} password={password} />;
 }
 
 LoginReduxSuccessContainer.propTypes = {

@@ -1,91 +1,72 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useMemo, useRef, useState } from "react";
 import CounterView from "../views/Counter";
 import PropTypes from "prop-types";
 
-class CounterContainer extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            counterValue: 0,
-        };
-    }
+function CounterContainer(props) {
+    const { countersCount } = props;
+    const [counterValue, setCounterValue] = useState(0);
 
-    UNSAFE_componentWillReceiveProps(nextProps) {
-        console.log("UNSAFE_componentWillReceiveProps in CounterContainer");
-        if (nextProps.countersCount > this.props.countersCount) {
-            this.handleEvenValue();
+    const prevCountersCount = useRef(countersCount);
+
+    useEffect(() => {
+        if (countersCount > prevCountersCount.current) {
+            handleEvenValue();
         }
-        if (nextProps.countersCount < this.props.countersCount) {
-            this.handleOddValue();
+        if (countersCount < prevCountersCount.current) {
+            handleOddValue();
         }
-    }
+        prevCountersCount.current = countersCount;
+    }, [countersCount]);
 
-    incrementValue() {
-        this.setState((state) => ({
-            counterValue: state.counterValue + 1,
-        }));
-    }
-
-    decrementValue() {
-        this.setState((state) => ({
-            counterValue: state.counterValue - 1,
-        }));
-    }
-
-    handleIncrementClick = (event) => {
-        this.incrementValue();
+    const incrementValue = () => {
+        console.log("fuck");
+        setCounterValue(counterValue + 1);
     };
 
-    handleDecrementClick = (event) => {
-        this.decrementValue();
+    const decrementValue = () => {
+        setCounterValue(counterValue - 1);
     };
 
-    handleResetClick = (event) => {
-        this.setState((state) => ({
-            counterValue: 0,
-        }));
+    const handleIncrementClick = () => {
+        incrementValue();
     };
 
-    handleEvenValue() {
-        if (this.state.counterValue % 2 === 0) {
-            this.incrementValue();
+    const handleDecrementClick = () => {
+        decrementValue();
+    };
+
+    const handleResetClick = () => {
+        setCounterValue(0);
+    };
+
+    const handleEvenValue = () => {
+        if (counterValue % 2 === 0) {
+            incrementValue();
         }
-    }
+    };
 
-    handleOddValue() {
-        if (this.state.counterValue % 2 === 1) {
+    const handleOddValue = () => {
+        if (counterValue % 2 === 1) {
             this.decrementValue();
         }
-    }
+    };
 
-    shouldComponentUpdate(nextProps, nextState) {
-        console.log("shouldComponentUpdate in CounterContainer");
-        if (nextState.counterValue === this.state.counterValue) {
-            console.log(
-                "shouldComponentUpdate in CounterContainer returns false"
-            );
-            return false;
-        }
-        console.log("shouldComponentUpdate in CounterContainer returns true");
-        return true;
-    }
-
-    render() {
-        console.log("render in CounterContainer");
-        return (
+    const memoizedCounterElement = useMemo(
+        () => (
             <CounterView
-                handleIncrementClick={this.handleIncrementClick}
-                handleDecrementClick={this.handleDecrementClick}
-                handleResetClick={this.handleResetClick}
-                counterValue={this.state.counterValue}
+                handleIncrementClick={handleIncrementClick}
+                handleDecrementClick={handleDecrementClick}
+                handleResetClick={handleResetClick}
+                counterValue={counterValue}
             />
-        );
-    }
+        ),
+        [counterValue]
+    );
+
+    return memoizedCounterElement;
 }
 
 CounterContainer.propTypes = {
-    isEven: PropTypes.bool,
-    isOdd: PropTypes.bool,
     countersCount: PropTypes.number.isRequired,
 };
 
