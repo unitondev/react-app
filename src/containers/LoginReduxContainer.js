@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import { connect } from "react-redux";
 import LoginReduxView from "../views/LoginRedux";
 import { changeEmail, changePassword } from "../redux/actions";
@@ -6,79 +6,73 @@ import PropTypes from "prop-types";
 import validateEmail from "../helper/validateEmail";
 import { getEmail, getPassword } from "../redux/selectors";
 
-class LoginReduxContainer extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            errors: { email: "", password: "" },
-        };
-    }
+function LoginReduxContainer(props) {
+    const { email, password, changeEmail, changePassword } = props;
 
-    handleSubmit = (event) => {
-        if (!this.handleValidation()) {
+    const [errors, setErrors] = useState({
+        email: "",
+        password: "",
+    });
+
+    const handleSubmit = (event) => {
+        if (!handleValidation()) {
             event.preventDefault();
-            if (this.state.errors["email"]) {
-                alert(`${this.state.errors["email"]}`);
+            if (errors["email"]) {
+                alert(`${errors["email"]}`);
             }
-            if (this.state.errors["password"]) {
-                alert(`${this.state.errors["password"]}`);
+            if (errors["password"]) {
+                alert(`${errors["password"]}`);
             }
         }
     };
 
-    handleEmailChange = (event) => {
-        this.props.changeEmail(event.target.value);
+    const handleEmailChange = (event) => {
+        changeEmail(event.target.value);
     };
 
-    handlePasswordChange = (event) => {
-        this.props.changePassword(event.target.value);
+    const handlePasswordChange = (event) => {
+        changePassword(event.target.value);
     };
 
-    handleValidation() {
-        let email = this.props.email;
-        let password = this.props.password;
-        let errors = this.state.errors;
-        // TODO: if i get errors object not from state - state can't be in time in handleSubmit
-        // let errors = { email: "", password: "" };
+    const handleValidation = () => {
+        let validationErrors = errors;
         let isFormValid = true;
 
         if (!email) {
             isFormValid = false;
-            errors["email"] = "Email Required";
+            validationErrors["email"] = "Email Required";
         } else if (!validateEmail(email)) {
             isFormValid = false;
-            errors["email"] = "Invalid email";
+            validationErrors["email"] = "Invalid email";
         } else {
-            errors["email"] = "";
+            validationErrors["email"] = "";
         }
 
         if (!password) {
             isFormValid = false;
-            errors["password"] = "Password required";
+            validationErrors["password"] = "Password required";
         } else if (password.length < 6) {
             isFormValid = false;
-            errors["password"] = "Password must be more than 6 characters";
+            validationErrors["password"] =
+                "Password must be more than 6 characters";
         } else {
-            errors["password"] = "";
+            validationErrors["password"] = "";
         }
 
-        this.setState({
-            errors,
-        });
-        return isFormValid;
-    }
+        setErrors(validationErrors);
 
-    render() {
-        return (
-            <LoginReduxView
-                handleSubmit={this.handleSubmit}
-                handleEmailChange={this.handleEmailChange}
-                handlePasswordChange={this.handlePasswordChange}
-                email={this.props.email}
-                password={this.props.password}
-            />
-        );
-    }
+        return isFormValid;
+    };
+
+    return (
+        <LoginReduxView
+            handleSubmit={handleSubmit}
+            handleEmailChange={handleEmailChange}
+            handlePasswordChange={handlePasswordChange}
+            email={email}
+            password={password}
+        />
+    );
 }
 
 const mapStateToProps = (state) => ({

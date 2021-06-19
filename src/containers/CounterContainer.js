@@ -1,92 +1,69 @@
-import React, { Component } from "react";
+import React, { Component, useEffect, useRef, useState } from "react";
 import CounterView from "../views/Counter";
 import PropTypes from "prop-types";
 
-class CounterContainer extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            counterValue: 0,
-        };
-    }
+export default function CounterContainer(props) {
+    const { countersCount } = props;
+    const [counterValue, setCounterValue] = useState(0);
 
-    UNSAFE_componentWillReceiveProps(nextProps) {
-        console.log("UNSAFE_componentWillReceiveProps in CounterContainer");
-        if (nextProps.countersCount > this.props.countersCount) {
-            this.handleEvenValue();
+    const prevCountersCount = useRef(countersCount);
+
+    useEffect(() => {
+        if (countersCount > prevCountersCount.current) {
+            handleEvenValue();
         }
-        if (nextProps.countersCount < this.props.countersCount) {
-            this.handleOddValue();
+        if (countersCount < prevCountersCount.current) {
+            handleOddValue();
         }
-    }
+        prevCountersCount.current = countersCount;
+    }, [countersCount]);
 
-    incrementValue() {
-        this.setState((state) => ({
-            counterValue: state.counterValue + 1,
-        }));
-    }
+    // function shouldComponentUpdate(_, nextState) {
+    //     return nextState.counterValue !== counterValue;
+    // }
 
-    decrementValue() {
-        this.setState((state) => ({
-            counterValue: state.counterValue - 1,
-        }));
-    }
-
-    handleIncrementClick = (event) => {
-        this.incrementValue();
+    const incrementValue = () => {
+        setCounterValue(counterValue + 1);
     };
 
-    handleDecrementClick = (event) => {
-        this.decrementValue();
+    const decrementValue = () => {
+        setCounterValue(counterValue - 1);
     };
 
-    handleResetClick = (event) => {
-        this.setState((state) => ({
-            counterValue: 0,
-        }));
+    const handleIncrementClick = () => {
+        incrementValue();
     };
 
-    handleEvenValue() {
-        if (this.state.counterValue % 2 === 0) {
-            this.incrementValue();
-        }
-    }
+    const handleDecrementClick = () => {
+        decrementValue();
+    };
 
-    handleOddValue() {
-        if (this.state.counterValue % 2 === 1) {
-            this.decrementValue();
-        }
-    }
+    const handleResetClick = () => {
+        setCounterValue(0);
+    };
 
-    shouldComponentUpdate(nextProps, nextState) {
-        console.log("shouldComponentUpdate in CounterContainer");
-        if (nextState.counterValue === this.state.counterValue) {
-            console.log(
-                "shouldComponentUpdate in CounterContainer returns false"
-            );
-            return false;
+    const handleEvenValue = () => {
+        if (counterValue % 2 === 0) {
+            incrementValue();
         }
-        console.log("shouldComponentUpdate in CounterContainer returns true");
-        return true;
-    }
+    };
 
-    render() {
-        console.log("render in CounterContainer");
-        return (
-            <CounterView
-                handleIncrementClick={this.handleIncrementClick}
-                handleDecrementClick={this.handleDecrementClick}
-                handleResetClick={this.handleResetClick}
-                counterValue={this.state.counterValue}
-            />
-        );
-    }
+    const handleOddValue = () => {
+        if (counterValue % 2 === 1) {
+            decrementValue();
+        }
+    };
+
+    return (
+        <CounterView
+            handleIncrementClick={handleIncrementClick}
+            handleDecrementClick={handleDecrementClick}
+            handleResetClick={handleResetClick}
+            counterValue={counterValue}
+        />
+    );
 }
 
 CounterContainer.propTypes = {
-    isEven: PropTypes.bool,
-    isOdd: PropTypes.bool,
     countersCount: PropTypes.number.isRequired,
 };
-
-export default CounterContainer;

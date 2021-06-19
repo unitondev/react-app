@@ -1,86 +1,77 @@
-import React, { Component } from "react";
+import React, { Component, useState } from "react";
 import LoginView from "../views/Login";
 import validateEmail from "../helper/validateEmail";
 
-class LoginContainer extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            email: "",
-            password: "",
-            errors: { email: "", password: "" },
-        };
-    }
+export default function LoginContainer() {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [errors, setErrors] = useState({
+        email: "",
+        password: "",
+    });
 
-    handleSubmit = (event) => {
-        if (this.handleValidation()) {
-            console.log(
-                `email: ${this.state.email}, password ${this.state.password}`
-            );
-            this.setState({
-                email: "",
-                password: "",
-            });
+    const handleSubmit = (event) => {
+        if (handleValidation()) {
+            console.log(`email: ${email}, password ${password}`);
+            setEmail("");
+            setPassword("");
         } else {
-            if (this.state.errors["email"]) {
-                alert(`${this.state.errors["email"]}`);
+            if (errors["email"]) {
+                alert(`${errors["email"]}`);
             }
-            if (this.state.errors["password"]) {
-                alert(`${this.state.errors["password"]}`);
+            if (errors["password"]) {
+                alert(`${errors["password"]}`);
             }
         }
 
         event.preventDefault();
     };
 
-    handleChange = (event) => {
-        this.setState({
-            [event.target.name]: event.target.value,
-        });
+    const handleEmailChange = (event) => {
+        setEmail(event.target.value);
     };
 
-    handleValidation() {
-        let email = this.state.email;
-        let password = this.state.password;
-        let errors = this.state.errors;
+    const handlePasswordChange = (event) => {
+        setPassword(event.target.value);
+    };
+
+    const handleValidation = () => {
+        let validationErrors = errors;
         let isFormValid = true;
 
         if (!email) {
             isFormValid = false;
-            errors["email"] = "Email Required";
+            validationErrors["email"] = "Email Required";
         } else if (!validateEmail(email)) {
             isFormValid = false;
-            errors["email"] = "Invalid email";
+            validationErrors["email"] = "Invalid email";
         } else {
-            errors["email"] = "";
+            validationErrors["email"] = "";
         }
 
         if (!password) {
             isFormValid = false;
-            errors["password"] = "Password required";
+            validationErrors["password"] = "Password required";
         } else if (password.length < 6) {
             isFormValid = false;
-            errors["password"] = "Password must be more than 6 characters";
+            validationErrors["password"] =
+                "Password must be more than 6 characters";
         } else {
-            errors["password"] = "";
+            validationErrors["password"] = "";
         }
 
-        this.setState({
-            errors: errors,
-        });
+        setErrors(validationErrors);
+
         return isFormValid;
-    }
+    };
 
-    render() {
-        return (
-            <LoginView
-                handleSubmit={this.handleSubmit}
-                handleChange={this.handleChange}
-                email={this.state.email}
-                password={this.state.password}
-            />
-        );
-    }
+    return (
+        <LoginView
+            handleEmailChange={handleEmailChange}
+            handlePasswordChange={handlePasswordChange}
+            handleSubmit={handleSubmit}
+            email={email}
+            password={password}
+        />
+    );
 }
-
-export default LoginContainer;
