@@ -1,8 +1,8 @@
-import React, { Component, useEffect, useRef, useState } from "react";
+import React, { Component, useEffect, useMemo, useRef, useState } from "react";
 import CounterView from "../views/Counter";
 import PropTypes from "prop-types";
 
-export default function CounterContainer(props) {
+function CounterContainer(props) {
     const { countersCount } = props;
     const [counterValue, setCounterValue] = useState(0);
 
@@ -18,11 +18,8 @@ export default function CounterContainer(props) {
         prevCountersCount.current = countersCount;
     }, [countersCount]);
 
-    // function shouldComponentUpdate(_, nextState) {
-    //     return nextState.counterValue !== counterValue;
-    // }
-
     const incrementValue = () => {
+        console.log("fuck");
         setCounterValue(counterValue + 1);
     };
 
@@ -50,20 +47,27 @@ export default function CounterContainer(props) {
 
     const handleOddValue = () => {
         if (counterValue % 2 === 1) {
-            decrementValue();
+            this.decrementValue();
         }
     };
 
-    return (
-        <CounterView
-            handleIncrementClick={handleIncrementClick}
-            handleDecrementClick={handleDecrementClick}
-            handleResetClick={handleResetClick}
-            counterValue={counterValue}
-        />
+    const memoizedCounterElement = useMemo(
+        () => (
+            <CounterView
+                handleIncrementClick={handleIncrementClick}
+                handleDecrementClick={handleDecrementClick}
+                handleResetClick={handleResetClick}
+                counterValue={counterValue}
+            />
+        ),
+        [counterValue]
     );
+
+    return memoizedCounterElement;
 }
 
 CounterContainer.propTypes = {
     countersCount: PropTypes.number.isRequired,
 };
+
+export default CounterContainer;
