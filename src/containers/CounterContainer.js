@@ -46,7 +46,7 @@ function CounterContainer(props) {
 
     const handleOddValue = () => {
         if (counterValue % 2 === 1) {
-            this.decrementValue();
+            decrementValue();
         }
     };
 
